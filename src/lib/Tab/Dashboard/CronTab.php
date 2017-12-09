@@ -35,7 +35,7 @@ class CronTab extends AbstractTab implements OrderedTabInterface
 
     public function getName(): string
     {
-        return /** @Desc("CronJobs") */
+        return
             $this->translator->trans('tab.name.cron', [], 'dashboard');
     }
 
