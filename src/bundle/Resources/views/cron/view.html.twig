@@ -1,0 +1,56 @@
+{% extends "@EzPlatformAdminUi/layout.html.twig" %}
+
+{% trans_default_domain 'crons' %}
+
+{% block breadcrumbs %}
+    {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
+        { url: path('edgar.ezuicron.menu'), value: 'crons.breadcrumb.view'|trans|desc('Cronjobs') },
+    ]} %}
+{% endblock %}
+
+{% block pageTitle %}
+    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+        title: 'crons.view.title'|trans|desc('Cronjobs'),
+        iconName: 'content-types'
+    } %}
+{% endblock %}
+
+{% block content %}
+    <section class="container mt-4">
+
+        <div class="ez-table-header mt-3">
+            <h5>{{ 'cron.header'|trans({'%total%': crons|length})|desc('CronJobs (%total%)') }}</h5>
+        </div>
+
+        {% if crons is empty %}
+            <table class="table">
+                <tr>
+                    <td colspan="4">
+                        <span>{{ 'cron.empty'|trans|desc('Sorry, no cronjobs were found.') }}</span>
+                    </td>
+                </tr>
+            </table>
+        {% else %}
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>{{ 'edgarezcron.cron.th.alias'|trans|desc('Alias') }}</th>
+                    <th>{{ 'edgarezcron.cron.th.expression'|trans|desc('Expression') }}</th>
+                    <th>{{ 'edgarezcron.cron.th.arguments'|trans|desc('Arguments') }}</th>
+                    <th>{{ 'edgarezcron.cron.th.priority'|trans|desc('Priority') }}</th>
+                    <th>{{ 'edgarezcron.cron.th.enabled'|trans|desc('Enabled') }}</th>
+                </tr>
+                </thead>
+                <tbody>
+                {% for alias, cron in crons %}
+                    {% include '@EdgarEzUICron/cron/cron.html.twig' with { alias: alias, cron: cron } %}
+                {% endfor %}
+                </tbody>
+            </table>
+        {% endif %}
+
+    </section>
+
+    <br />
+
+{% endblock %}

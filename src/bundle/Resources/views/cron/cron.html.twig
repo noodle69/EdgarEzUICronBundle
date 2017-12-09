@@ -1,0 +1,21 @@
+<tr>
+    <td>{{ alias }}</td>
+    <td class="edgar-ezuicron-edit" data-type="expression" data-alias="{{ alias }}" id="edgar-ezuicron-td-expression-{{ alias }}">
+        <span class="edgar-ezuicron-value" data-type="expression" data-alias="{{ alias }}" id="edgar-ezuicron-value-expression-{{ alias }}">
+            {{ cron.expression }}
+        </span>
+    </td>
+    <td class="edgar-ezuicron-edit" data-type="arguments" data-alias="{{ alias }}" id="edgar-ezuicron-td-arguments-{{ alias }}">
+        <span class="edgar-ezuicron-value" data-type="arguments" data-alias="{{ alias }}" id="edgar-ezuicron-value-arguments-{{ alias }}">
+            {{ cron.arguments }}
+        </span>
+    </td>
+    <td class="edgar-ezuicron-edit" data-type="priority" data-alias="{{ alias }}" id="edgar-ezuicron-td-priority-{{ alias }}">
+        <span class="edgar-ezuicron-value" data-type="priority" data-alias="{{ alias }}" id="edgar-ezuicron-value-priority-{{ alias }}">
+            {{ cron.priority }}
+        </span>
+    </td>
+    <td class="edgar-ezuicron-edit-boolean" data-type="enabled" data-alias="{{ alias }}">
+        <span id="edgar-ezuicron-enabled-{{ alias }}" class="{% if cron.enabled %}{% endif %}" data-type="enabled" data-alias="{{ alias }}"></span>
+    </td>
+</tr>

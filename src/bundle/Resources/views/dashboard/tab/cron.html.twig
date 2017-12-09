@@ -1,0 +1,32 @@
+{% trans_default_domain 'dashboard' %}
+
+<table class="table">
+    <thead>
+    <tr>
+        <th>{{ 'edgarezcron.status.th.alias'|trans|desc('Alias') }}</th>
+        <th>{{ 'edgarezcron.status.th.queued'|trans|desc('Queued') }}</th>
+        <th>{{ 'edgarezcron.status.th.started'|trans|desc('Started') }}</th>
+        <th>{{ 'edgarezcron.status.th.ended'|trans|desc('Ended') }}</th>
+        <th>{{ 'edgarezcron.status.th.status'|trans|desc('Status') }}</th>
+    </tr>
+    </thead>
+    <tbody>
+        {% if crons is empty %}
+            <tr>
+                <td colspan="5">
+                    <span>{{ 'cron.empty'|trans|desc('Sorry, no cronjobs were found.') }}</span>
+                </td>
+            </tr>
+        {% else %}
+            {% for cron in crons %}
+                <tr >
+                    <td>{{ cron.alias }}</td>
+                    <td>{{ cron.queued }}</td>
+                    <td>{{ cron.started }}</td>
+                    <td>{{ cron.ended }}</td>
+                    <td>{{ cron.status }}</td>
+                </tr>
+            {% endfor %}
+        {% endif %}
+    </tbody>
+</table>

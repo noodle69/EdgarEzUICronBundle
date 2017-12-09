@@ -1,0 +1,6 @@
+services:
+    Edgar\EzUICron\Tab\Dashboard\CronTab:
+        parent: EzSystems\EzPlatformAdminUi\Tab\AbstractTab
+        public: false
+        tags:
+            - { name: ezplatform.tab, group: dashboard-everyone }

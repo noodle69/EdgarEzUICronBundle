@@ -1,0 +1,4 @@
+edgar.ezuicron.menu:
+    path: /cron
+    defaults:
+        _controller: 'EdgarEzUICronBundle:Cron:menu'
