@@ -16,6 +16,6 @@
         </span>
     </td>
     <td class="edgar-ezuicron-edit-boolean" data-type="enabled" data-alias="{{ alias }}">
-        <span id="edgar-ezuicron-enabled-{{ alias }}" class="{% if cron.enabled %}{% endif %}" data-type="enabled" data-alias="{{ alias }}"></span>
+        <input id="edgar-ezuicron-enabled-{{ alias }}" type="checkbox" disabled="" {% if cron.enabled %}checked=""{% endif %} title="{% if cron.enabled %}Enabled{% else %}Disabled{% endif %}">
     </td>
 </tr>
