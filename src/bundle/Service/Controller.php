@@ -1,8 +1,7 @@
 <?php
 
-namespace Edgar\EzUICronBundle\Controller;
+namespace Edgar\EzUICronBundle\Service;
 
-use Edgar\EzUICronBundle\Service\EzCronService;
 use eZ\Publish\Core\Base\Exceptions\UnauthorizedException;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller as BaseController;
 use eZ\Publish\API\Repository\Repository;

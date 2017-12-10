@@ -2,6 +2,7 @@
 
 namespace Edgar\EzUICronBundle\Controller;
 
+use Edgar\EzUICronBundle\Service\Controller;
 use Symfony\Component\HttpFoundation\Request;
 use Symfony\Component\HttpFoundation\Response;
 
