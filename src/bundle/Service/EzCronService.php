@@ -157,21 +157,23 @@ class EzCronService
             }
         }
 
+        /** @var EdgarCron[] $cronsToRun */
         $cronsToRun = [];
         if ($edgarCrons) {
             foreach ($edgarCrons as $edgarCron) {
                 if (isset($cronAlias[$edgarCron->getAlias()])) {
                     $priority = $cronAlias[$edgarCron->getAlias()]['priority'];
-                    if (!isset($cronsToRun[$priority]))
+                    if (!isset($cronsToRun[$priority])) {
                         $cronsToRun[$priority] = [];
+                    }
                     $cronsToRun[$priority][] = $edgarCron;
                 }
             }
         }
 
         ksort($cronsToRun);
-        foreach ($cronsToRun as $priority => $crons) {
-            foreach ($crons as $edgarCron) {
+        foreach ($cronsToRun as $priority => $edgarCrons) {
+            foreach ($edgarCrons as $edgarCron) {
                 $this->cronService->run($edgarCron);
                 /** @var CronInterface $cron */
                 $cron = $cronAlias[$edgarCron->getAlias()]['cron'];
