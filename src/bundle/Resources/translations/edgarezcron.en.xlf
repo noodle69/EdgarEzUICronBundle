@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="fc28844e71e4becb0355e6a25c9049667cfd6cf9" resname="cron alias not found">
+        <source>cron alias not found</source>
+        <target state="new">cron alias not found</target>
+        <note>key: cron alias not found</note>
+      </trans-unit>
+      <trans-unit id="98a59980cf121f406885c6e30406808ea48341f2" resname="cron.invalid.type">
+        <source>cron.invalid.type</source>
+        <target state="new">cron.invalid.type</target>
+        <note>key: cron.invalid.type</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>

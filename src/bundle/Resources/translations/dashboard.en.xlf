@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<xliff xmlns="urn:oasis:names:tc:xliff:document:1.2" xmlns:jms="urn:jms:translation" version="1.2">
+  <file source-language="en" target-language="en" datatype="plaintext" original="not.available">
+    <header>
+      <tool tool-id="JMSTranslationBundle" tool-name="JMSTranslationBundle" tool-version="1.1.0-DEV"/>
+      <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
+    </header>
+    <body>
+      <trans-unit id="f2ff9798d502d6edde5d9814cb9c55df0726d3bf" resname="cron.empty">
+        <source>Sorry, no cronjobs were found.</source>
+        <target state="new">Sorry, no cronjobs were found.</target>
+        <note>key: cron.empty</note>
+      </trans-unit>
+      <trans-unit id="c0632f8a32686e93f8adb3e853e907a94ae22297" resname="edgarezcron.status.th.alias">
+        <source>Alias</source>
+        <target state="new">Alias</target>
+        <note>key: edgarezcron.status.th.alias</note>
+      </trans-unit>
+      <trans-unit id="e80a67efbaf38d47f1b8ffb3ef68e8487df7de7e" resname="edgarezcron.status.th.ended">
+        <source>Ended</source>
+        <target state="new">Ended</target>
+        <note>key: edgarezcron.status.th.ended</note>
+      </trans-unit>
+      <trans-unit id="ed1bfa59558048ba9fa6698f08adef740f73e7c3" resname="edgarezcron.status.th.queued">
+        <source>Queued</source>
+        <target state="new">Queued</target>
+        <note>key: edgarezcron.status.th.queued</note>
+      </trans-unit>
+      <trans-unit id="2d1ef074d38797e6b709d6c73fdca95278d5e04a" resname="edgarezcron.status.th.started">
+        <source>Started</source>
+        <target state="new">Started</target>
+        <note>key: edgarezcron.status.th.started</note>
+      </trans-unit>
+      <trans-unit id="cc0b7c83e7f69f8778485f7b8181ff48f80a13ae" resname="edgarezcron.status.th.status">
+        <source>Status</source>
+        <target state="new">Status</target>
+        <note>key: edgarezcron.status.th.status</note>
+      </trans-unit>
+      <trans-unit id="f5cec73eebc68ebb31cef50ed329bd186e1423c4" resname="tab.name.cron">
+        <source>tab.name.cron</source>
+        <target state="new">Cronjobs</target>
+        <note>key: tab.name.cron</note>
+      </trans-unit>
+    </body>
+  </file>
+</xliff>
