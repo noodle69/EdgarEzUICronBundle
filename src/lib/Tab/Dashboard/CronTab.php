@@ -87,5 +87,7 @@ class CronTab extends AbstractTab implements OrderedTabInterface
         if ($this->repository->hasAccess('cron', 'dashboard') !== true) {
             return false;
         }
+
+        return true;
     }
 }
