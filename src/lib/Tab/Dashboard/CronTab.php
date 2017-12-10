@@ -4,6 +4,7 @@ namespace Edgar\EzUICron\Tab\Dashboard;
 
 use Edgar\CronBundle\Entity\EdgarCron;
 use Edgar\EzUICronBundle\Service\EzCronService;
+use eZ\Publish\API\Repository\Repository;
 use EzSystems\EzPlatformAdminUi\Tab\AbstractTab;
 use EzSystems\EzPlatformAdminUi\Tab\OrderedTabInterface;
 use Symfony\Component\Translation\TranslatorInterface;
@@ -14,6 +15,9 @@ class CronTab extends AbstractTab implements OrderedTabInterface
     /** @var EzCronService $cronService */
     protected $cronService;
 
+    /** @var Repository $repository */
+    protected $repository;
+
     /**
      * @param Environment $twig
      * @param TranslatorInterface $translator
@@ -21,10 +25,12 @@ class CronTab extends AbstractTab implements OrderedTabInterface
     public function __construct(
         Environment $twig,
         TranslatorInterface $translator,
+        Repository $repository,
         EzCronService $cronService
     ) {
         parent::__construct($twig, $translator);
 
+        $this->repository = $repository;
         $this->cronService = $cronService;
     }
 
@@ -46,6 +52,12 @@ class CronTab extends AbstractTab implements OrderedTabInterface
 
     public function renderView(array $parameters): string
     {
+        if (!$this->performAccessCheck()) {
+            return $this->twig->render('@EdgarEzUICron/dashboard/tab/cron.html.twig', [
+                'crons' => [],
+            ]);
+        }
+
         $crons = $this->cronService->listCronsStatus();
 
         $cronRows = [];
@@ -68,5 +80,12 @@ class CronTab extends AbstractTab implements OrderedTabInterface
         return $this->twig->render('@EdgarEzUICron/dashboard/tab/cron.html.twig', [
             'crons' => $cronRows,
         ]);
+    }
+
+    public function performAccessCheck()
+    {
+        if ($this->repository->hasAccess('cron', 'dashboard') !== true) {
+            return false;
+        }
     }
 }
