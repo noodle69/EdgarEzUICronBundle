@@ -9,9 +9,13 @@ eZ Platform Cron scheduler
 
 ## Description
 
-This bundle offer 
+This bundle offer a command that you should use as a cronjob : 
 
 ## Documentation
 
 [Installation](docs/INSTALL.md)
+
+[Extend](docs/EXTEND.md)
+
+[Usage](docs/USAGE.md)
 
