@@ -21,6 +21,7 @@ public function registerBundles()
 {
     $bundles = array(
         // ...
+        new Edgar\CronBundle\EdgarCronBundle(),
         new Edgar\EzUICronBundle\EdgarEzUICronBundle(),
         // ...
     );

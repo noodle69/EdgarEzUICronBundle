@@ -43,6 +43,26 @@ class EzCronService
         $this->translator = $translator;
     }
 
+    public function getCron(string $alias): ?EdgarEzCron
+    {
+        if ($cron = $this->repository->getCron($alias)) {
+            return $cron;
+        }
+
+        $crons = $this->getCrons();
+        if (isset($crons[$alias])) {
+            $cron = new EdgarEzCron();
+            $cron->setAlias($alias);
+            $cron->setExpression($crons[$alias]['expression']);
+            $cron->setArguments($crons[$alias]['arguments']);
+            $cron->setPriority($crons[$alias]['priority']);
+            $cron->setEnabled($crons[$alias]['enabled']);
+            return $cron;
+        }
+
+        return null;
+    }
+
     /**
      * Return cron status entries
      *
@@ -53,40 +73,20 @@ class EzCronService
         return $this->cronService->listCronsStatus();
     }
 
-    /**
-     * @param string $alias
-     * @param string $type
-     * @param string $value
-     * @throws InvalidArgumentException
-     * @throws NotFoundException
-     */
-    public function updateCron(string $alias, string $type, string $value)
+    public function updateCron(EdgarEzCron $cron)
     {
-        $cron = $this->repository->find($alias);
-        if (!$cron) {
+        $eZCron = $this->repository->find($cron->getAlias());
+        if (!$eZCron) {
             $crons = $this->getCrons();
-            if (!isset($crons[$alias])) {
+            if (!isset($crons[$cron->getAlias()])) {
                 throw new NotFoundException(
                     $this->translator->trans('cron alias not found', [], 'edgarezcron'),
                     'edgarezcron'
                 );
             }
-
-            $cron = new EdgarEzCron();
-            $cron->setAlias($crons[$alias]['alias']);
-            $cron->setExpression($crons[$alias]['expression']);
-            $cron->setArguments($crons[$alias]['arguments']);
-            $cron->setPriority($crons[$alias]['priority']);
-            $cron->setEnabled($crons[$alias]['enabled']);
         }
 
-        try {
-            $this->repository->updateCron($cron, $type, $value);
-        } catch (InvalidArgumentException $e) {
-            throw new InvalidArgumentException(
-                $type, $this->translator->trans('cron.invalid.type', ['%type%' => $type], 'edgarezcron')
-            );
-        }
+        $this->repository->updateCron($cron);
     }
 
     /**

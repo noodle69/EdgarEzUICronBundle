@@ -42,9 +42,9 @@ class EdgarEzCron
     private $priority = 100;
 
     /**
-     * @var integer
+     * @var bool
      *
-     * @ORM\Column(name="enabled", type="integer", nullable=false)
+     * @ORM\Column(name="enabled", type="boolean", nullable=false)
      */
     private $enabled = 1;
 
@@ -98,7 +98,7 @@ class EdgarEzCron
      * @param string $arguments
      * @return EdgarEzCron
      */
-    public function setArguments(string $arguments): self
+    public function setArguments(?string $arguments): self
     {
         $this->arguments = $arguments;
         return $this;
@@ -109,7 +109,7 @@ class EdgarEzCron
      *
      * @return string
      */
-    public function getArguments(): string
+    public function getArguments(): ?string
     {
         return $this->arguments;
     }
@@ -139,10 +139,10 @@ class EdgarEzCron
     /**
      * Set enabled
      *
-     * @param int $enabled
+     * @param bool $enabled
      * @return EdgarEzCron
      */
-    public function setEnabled(int $enabled): self
+    public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
         return $this;
@@ -151,9 +151,9 @@ class EdgarEzCron
     /**
      * Get enabled
      *
-     * @return int
+     * @return bool
      */
-    public function getEnabled(): int
+    public function getEnabled(): bool
     {
         return $this->enabled;
     }

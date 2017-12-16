@@ -18,4 +18,13 @@
     <td class="edgar-ezuicron-edit-boolean" data-type="enabled" data-alias="{{ alias }}">
         <input id="edgar-ezuicron-enabled-{{ alias }}" type="checkbox" disabled="" {% if cron.enabled %}checked=""{% endif %} title="{% if cron.enabled %}Enabled{% else %}Disabled{% endif %}">
     </td>
+    <td class="text-right">
+        <a title="{{ 'cron.update'|trans|desc('Edit') }}"
+           href="{{ path('edgar.ezuicron.update', {'alias': alias}) }}"
+           class="btn btn-icon mx-3">
+            <svg class="ez-icon ez-icon-edit">
+                <use xlink:href="{{ asset('bundles/ezplatformadminui/img/ez-icons.svg') }}#edit"></use>
+            </svg>
+        </a>
+    </td>
 </tr>

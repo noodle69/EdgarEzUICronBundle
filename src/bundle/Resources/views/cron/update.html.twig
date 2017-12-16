@@ -1,0 +1,42 @@
+{% extends '@EdgarEzUICron/cron/base.html.twig' %}
+
+{% trans_default_domain 'crons' %}
+
+{% block breadcrumbs_admin %}
+    {% include 'EzPlatformAdminUiBundle:parts:breadcrumbs.html.twig' with { 'items': [
+        { 'value': 'breadcrumb.admin'|trans(domain='messages')|desc('Admin') },
+        { 'url': path('edgar.ezuicron.list'), 'value': 'cron.list'|trans|desc('CronJobs') },
+        { 'value': 'cron.update.title'|trans({ '%identifier%': cron.alias })|desc('Editing Cron "%identifier%"') }
+    ]} %}
+{% endblock %}
+
+{% block page_title_admin %}
+    {% include '@EzPlatformAdminUi/parts/page_title.html.twig' with {
+        title: 'cron.update.title'|trans({ '%identifier%': cron.alias })|desc('Editing Cron "%identifier%"'),
+        iconName: 'schedule'
+    } %}
+{% endblock %}
+
+{% block form %}
+    {{ form_start(form_cron_update, {'attr': {'class': 'update-cron'}}) }}
+
+    <section class="container mt-4">
+        <div class="card ez-card">
+            <div class="card-body">
+                {{ form_row(form_cron_update.expression) }}
+                {{ form_row(form_cron_update.arguments) }}
+                {{ form_row(form_cron_update.priority) }}
+                {{ form_row(form_cron_update.enabled) }}
+            </div>
+        </div>
+    </section>
+
+    {{ form_widget(form_cron_update.update, {'attr': {'hidden': 'hidden'}}) }}
+
+    {{ form_end(form_cron_update) }}
+{% endblock %}
+
+{% block right_sidebar %}
+    {% set cron_edit_sidebar_right = knp_menu_get('edgar.ezuicron.menu.cron_edit.sidebar_right', [], {'cron': cron}) %}
+    {{ knp_menu_render(cron_edit_sidebar_right, {'template': '@EzPlatformAdminUi/parts/menu/sidebar_right.html.twig'}) }}
+{% endblock %}

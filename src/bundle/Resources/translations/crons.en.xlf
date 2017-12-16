@@ -8,47 +8,57 @@
     <body>
       <trans-unit id="f2ff9798d502d6edde5d9814cb9c55df0726d3bf" resname="cron.empty">
         <source>Sorry, no cronjobs were found.</source>
-        <target state="new">Sorry, no cronjobs were found.</target>
+        <target>Sorry, no cronjobs were found.</target>
         <note>key: cron.empty</note>
       </trans-unit>
       <trans-unit id="b830ca715b55d50446e45f71a9e99d1563ad876e" resname="cron.header">
         <source>CronJobs (%total%)</source>
-        <target state="new">CronJobs (%total%)</target>
+        <target>CronJobs (%total%)</target>
         <note>key: cron.header</note>
+      </trans-unit>
+      <trans-unit id="e67079ab7dc71effc58833d6df3ec6b6fcf37484" resname="cron.list">
+        <source>CronJobs</source>
+        <target state="new">CronJobs</target>
+        <note>key: cron.list</note>
+      </trans-unit>
+      <trans-unit id="d489dcc2edd17a75d29791f52c321fdbafe8c414" resname="cron.update.title">
+        <source>Editing Cron "%identifier%"</source>
+        <target state="new">Editing Cron "%identifier%"</target>
+        <note>key: cron.update.title</note>
       </trans-unit>
       <trans-unit id="a2e5c69551b58b834ff962b2b75b5533c255271d" resname="crons.breadcrumb.view">
         <source>Cronjobs</source>
-        <target state="new">Cronjobs</target>
+        <target>Cronjobs</target>
         <note>key: crons.breadcrumb.view</note>
       </trans-unit>
       <trans-unit id="a34cb2be4438f39b78b1701fd236be91cd4f0a51" resname="crons.view.title">
         <source>Cronjobs</source>
-        <target state="new">Cronjobs</target>
+        <target>Cronjobs</target>
         <note>key: crons.view.title</note>
       </trans-unit>
       <trans-unit id="c0141f908c794d4af31b5f72e19cbddd500ddc34" resname="edgarezcron.cron.th.alias">
         <source>Alias</source>
-        <target state="new">Alias</target>
+        <target>Alias</target>
         <note>key: edgarezcron.cron.th.alias</note>
       </trans-unit>
       <trans-unit id="0e26f3c78cba3049964e00a171927df81e7bfb09" resname="edgarezcron.cron.th.arguments">
         <source>Arguments</source>
-        <target state="new">Arguments</target>
+        <target>Arguments</target>
         <note>key: edgarezcron.cron.th.arguments</note>
       </trans-unit>
       <trans-unit id="94d04e805aa4ef954f02ab7121282cd5d556d67e" resname="edgarezcron.cron.th.enabled">
         <source>Enabled</source>
-        <target state="new">Enabled</target>
+        <target>Enabled</target>
         <note>key: edgarezcron.cron.th.enabled</note>
       </trans-unit>
       <trans-unit id="f9720ad0c268788467e99d48b6427464d1ffba50" resname="edgarezcron.cron.th.expression">
         <source>Expression</source>
-        <target state="new">Expression</target>
+        <target>Expression</target>
         <note>key: edgarezcron.cron.th.expression</note>
       </trans-unit>
       <trans-unit id="df532b85c8720f2f5b43fe1cf167be4c19ffa908" resname="edgarezcron.cron.th.priority">
         <source>Priority</source>
-        <target state="new">Priority</target>
+        <target>Priority</target>
         <note>key: edgarezcron.cron.th.priority</note>
       </trans-unit>
     </body>

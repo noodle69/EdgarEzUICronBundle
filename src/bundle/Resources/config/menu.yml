@@ -1,0 +1,10 @@
+services:
+    _defaults:
+        autowire: true
+        autoconfigure: true
+        public: true
+
+    Edgar\EzUICron\Menu\CronEditRightSidebarBuilder:
+        public: true
+        tags:
+            - { name: knp_menu.menu_builder, method: build, alias: edgar.ezuicron.menu.cron_edit.sidebar_right }

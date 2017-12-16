@@ -19,7 +19,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
         $menu = $event->getMenu();
 
         $cronsMenu = $menu->getChild(MainMenuBuilder::ITEM_ADMIN);
-        $cronsMenu->addChild(self::ITEM_CRONS, ['route' => 'edgar.ezuicron.menu']);
+        $cronsMenu->addChild(self::ITEM_CRONS, ['route' => 'edgar.ezuicron.list']);
     }
 
     /**

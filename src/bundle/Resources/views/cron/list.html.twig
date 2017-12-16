@@ -5,7 +5,7 @@
 {% block breadcrumbs %}
     {% include '@EzPlatformAdminUi/parts/breadcrumbs.html.twig' with { items: [
         { value: 'breadcrumb.admin'|trans(domain='messages')|desc('Admin') },
-        { url: path('edgar.ezuicron.menu'), value: 'crons.breadcrumb.view'|trans|desc('Cronjobs') },
+        { url: path('edgar.ezuicron.list'), value: 'crons.breadcrumb.view'|trans|desc('Cronjobs') },
     ]} %}
 {% endblock %}
 
@@ -40,6 +40,7 @@
                     <th>{{ 'edgarezcron.cron.th.arguments'|trans|desc('Arguments') }}</th>
                     <th>{{ 'edgarezcron.cron.th.priority'|trans|desc('Priority') }}</th>
                     <th>{{ 'edgarezcron.cron.th.enabled'|trans|desc('Enabled') }}</th>
+                    <th></th>
                 </tr>
                 </thead>
                 <tbody>

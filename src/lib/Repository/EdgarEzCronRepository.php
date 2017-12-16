@@ -17,56 +17,16 @@ class EdgarEzCronRepository extends EntityRepository
      */
     public function listCrons(): array
     {
-        $query = $this->createQueryBuilder('c')
-            ->getQuery();
-        /** @var EdgarEzCron[] */
-        return $query->getResult();
+        return $this->findAll();
     }
 
-    /**
-     * Edit cron definition
-     *
-     * @param EdgarEzCron $cron cron object
-     * @param string      $type cron property identifier
-     * @param string      $value cron property value
-     * @throws InvalidArgumentException|OptimisticLockException
-     */
-    public function updateCron(EdgarEzCron $cron, $type, $value)
+    public function getCron(string $alias): ?EdgarEzCron
     {
-        switch ($type) {
-            case 'expression':
-                if (!CronExpression::isValidExpression($value)) {
-                    throw new InvalidArgumentException(
-                        'expression', 'cron.invalid.type'
-                    );
-                }
-                $cron->setExpression($value);
-                break;
-            case 'arguments':
-                if (preg_match_all('|[a-z0-9_\-]+:[a-z0-9_\-]+|', $value) === 0) {
-                    throw new InvalidArgumentException(
-                        'arguments', 'cron.invalid.type'
-                    );
-                }
-                $cron->setArguments($value);
-                break;
-            case 'priority':
-                if (!ctype_digit($value)) {
-                    throw new InvalidArgumentException(
-                        'priority', 'cron.invalid.type'
-                    );
-                }
-                $cron->setPriority((int)$value);
-                break;
-            case 'enabled':
-                if (!ctype_digit($value) && ((int)$value != 1 || (int)$value != 0)) {
-                    throw new InvalidArgumentException(
-                        'enabled', 'cron.invalid.type'
-                    );
-                }
-                $cron->setEnabled((int)$value);
-                break;
-        }
+        return $this->findOneBy(['alias' => $alias]);
+    }
+
+    public function updateCron(EdgarEzCron $cron)
+    {
         $this->getEntityManager()->persist($cron);
         $this->getEntityManager()->flush();
     }

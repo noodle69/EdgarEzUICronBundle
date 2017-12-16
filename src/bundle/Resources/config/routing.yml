@@ -1,4 +1,10 @@
-edgar.ezuicron.menu:
-    path: /cron
+edgar.ezuicron.list:
+    path: /cron/list
     defaults:
-        _controller: 'EdgarEzUICronBundle:Cron:menu'
+        _controller: 'EdgarEzUICronBundle:Cron:list'
+
+edgar.ezuicron.update:
+    path: /cron/update/{alias}
+    defaults:
+        alias: null
+        _controller: 'EdgarEzUICronBundle:Cron:update'
