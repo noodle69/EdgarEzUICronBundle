@@ -3,7 +3,6 @@
   "license": "GPL-2.0",
   "type": "ezplatform-bundle",
   "description": "eZ Platform Cron scheduler",
-  "minimum-stability": "dev",
   "authors": [
     {
       "name": "Emmanuel DROUET"
@@ -20,8 +19,8 @@
   },
   "require": {
     "php": ">=7.1",
-    "ezsystems/ezpublish-kernel": "^7.0@dev",
-    "ezsystems/ezplatform-admin-ui": "^1.0@dev",
+    "ezsystems/ezpublish-kernel": "^7.0",
+    "ezsystems/ezplatform-admin-ui": "^1.0",
     "edgar/cron-bundle": "~1.0"
   },
   "require-dev": {
