@@ -55,11 +55,13 @@ in your Resources/config/services.yml, add
 services:
     AcmeBundle\Cron\FooCron:
         tags:
-          - { name: edgar.cron, alias: foo, priority: 200, arguments: 'foo:fooarg' }
+          - { name: edgar.cron, alias: foo, expression: "* * * * *", priority: 200, arguments: "foo:fooarg" }
 ```
 
 * Your cron is tagged with "edgar.cron".
 * You should define an alias
 * priority is not mandatory
+* expression is not mandatory
+* expression format is : m h d dm dw
 * arguments is not mandatory
 * arguments format is : arg1:value1 arg2:value2 ...

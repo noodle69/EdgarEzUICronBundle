@@ -151,6 +151,7 @@ class EzCronService
             if (isset($eZCrons[$cron->getAlias()])) {
                 $cronAlias[$cron->getAlias()] = [
                     'cron' => $cron,
+                    'expression' => $eZCrons[$cron->getAlias()]['expression'],
                     'arguments' => $eZCrons[$cron->getAlias()]['arguments'],
                     'priority' => $eZCrons[$cron->getAlias()]['priority'],
                 ];
