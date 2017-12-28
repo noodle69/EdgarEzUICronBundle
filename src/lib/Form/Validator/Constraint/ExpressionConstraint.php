@@ -3,7 +3,6 @@
 namespace Edgar\EzUICron\Form\Validator\Constraint;
 
 use Symfony\Component\Validator\Constraint;
-use Symfony\Component\Validator\ConstraintValidator;
 
 class ExpressionConstraint extends Constraint
 {
