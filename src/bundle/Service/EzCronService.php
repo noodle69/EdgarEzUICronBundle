@@ -72,6 +72,10 @@ class EzCronService
         return $this->cronService->listCronsStatus();
     }
 
+    /**
+     * @param EdgarEzCron $cron
+     * @throws NotFoundException
+     */
     public function updateCron(EdgarEzCron $cron)
     {
         $eZCron = $this->repository->find($cron->getAlias());

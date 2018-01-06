@@ -9,7 +9,6 @@ use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
-use eZ\Publish\Core\Base\Exceptions\UnauthorizedException;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\RedirectResponse;
 use Symfony\Component\HttpFoundation\Request;
