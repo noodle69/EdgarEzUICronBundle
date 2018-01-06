@@ -6,7 +6,6 @@ use Doctrine\Bundle\DoctrineBundle\Registry;
 use Edgar\Cron\Handler\CronHandler;
 use Edgar\EzUICron\Repository\EdgarEzCronRepository;
 use Edgar\EzUICronBundle\Entity\EdgarEzCron;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use Edgar\Cron\Cron\CronInterface;
 use Edgar\CronBundle\Entity\EdgarCron;

@@ -2,11 +2,8 @@
 
 namespace Edgar\EzUICron\Repository;
 
-use Cron\CronExpression;
 use Doctrine\ORM\EntityRepository;
-use Doctrine\ORM\OptimisticLockException;
 use Edgar\EzUICronBundle\Entity\EdgarEzCron;
-use eZ\Publish\Core\Base\Exceptions\InvalidArgumentException;
 
 class EdgarEzCronRepository extends EntityRepository
 {
