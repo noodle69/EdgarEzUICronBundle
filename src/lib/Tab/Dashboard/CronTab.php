@@ -4,6 +4,7 @@ namespace Edgar\EzUICron\Tab\Dashboard;
 
 use Edgar\CronBundle\Entity\EdgarCron;
 use Edgar\EzUICronBundle\Service\EzCronService;
+use eZ\Publish\API\Repository\PermissionResolver;
 use eZ\Publish\API\Repository\Repository;
 use EzSystems\EzPlatformAdminUi\Tab\AbstractTab;
 use EzSystems\EzPlatformAdminUi\Tab\OrderedTabInterface;
@@ -18,6 +19,9 @@ class CronTab extends AbstractTab implements OrderedTabInterface
     /** @var Repository $repository */
     protected $repository;
 
+    /** @var PermissionResolver  */
+    private $permissionResolver;
+
     /**
      * @param Environment $twig
      * @param TranslatorInterface $translator
@@ -26,12 +30,14 @@ class CronTab extends AbstractTab implements OrderedTabInterface
         Environment $twig,
         TranslatorInterface $translator,
         Repository $repository,
-        EzCronService $cronService
+        EzCronService $cronService,
+        PermissionResolver $permissionResolver
     ) {
         parent::__construct($twig, $translator);
 
         $this->repository = $repository;
         $this->cronService = $cronService;
+        $this->permissionResolver = $permissionResolver;
     }
 
     public function getIdentifier(): string
@@ -52,7 +58,7 @@ class CronTab extends AbstractTab implements OrderedTabInterface
 
     public function renderView(array $parameters): string
     {
-        if (!$this->performAccessCheck()) {
+        if (!$this->permissionAccess('cron', 'dashboard')) {
             return $this->twig->render('@EdgarEzUICron/dashboard/tab/cron.html.twig', [
                 'crons' => [],
             ]);
@@ -82,9 +88,9 @@ class CronTab extends AbstractTab implements OrderedTabInterface
         ]);
     }
 
-    public function performAccessCheck()
+    protected function permissionAccess(string $module, string $function): bool
     {
-        if ($this->repository->hasAccess('cron', 'dashboard') !== true) {
+        if (!$this->permissionResolver->hasAccess($module, $function)) {
             return false;
         }
 
