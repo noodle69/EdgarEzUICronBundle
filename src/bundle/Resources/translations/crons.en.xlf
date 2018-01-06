@@ -18,12 +18,12 @@
       </trans-unit>
       <trans-unit id="e67079ab7dc71effc58833d6df3ec6b6fcf37484" resname="cron.list">
         <source>CronJobs</source>
-        <target state="new">CronJobs</target>
+        <target>CronJobs</target>
         <note>key: cron.list</note>
       </trans-unit>
       <trans-unit id="d489dcc2edd17a75d29791f52c321fdbafe8c414" resname="cron.update.title">
         <source>Editing Cron "%identifier%"</source>
-        <target state="new">Editing Cron "%identifier%"</target>
+        <target>Editing Cron "%identifier%"</target>
         <note>key: cron.update.title</note>
       </trans-unit>
       <trans-unit id="a2e5c69551b58b834ff962b2b75b5533c255271d" resname="crons.breadcrumb.view">

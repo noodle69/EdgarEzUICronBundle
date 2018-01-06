@@ -8,12 +8,12 @@
     <body>
       <trans-unit id="7633089e371ea9c07787b1aafb30b7ffb1978e1e" resname="cron_edit__sidebar_right__cancel">
         <source>Discard changes</source>
-        <target state="new">Discard changes</target>
+        <target>Discard changes</target>
         <note>key: cron_edit__sidebar_right__cancel</note>
       </trans-unit>
       <trans-unit id="a220d77c92370635a39a41c292c874739570fae2" resname="cron_edit__sidebar_right__save">
         <source>Save</source>
-        <target state="new">Save</target>
+        <target>Save</target>
         <note>key: cron_edit__sidebar_right__save</note>
       </trans-unit>
     </body>

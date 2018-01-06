@@ -7,9 +7,14 @@
     </header>
     <body>
       <trans-unit id="f694e7057aa0a4e5ba4c03b27d84f4c28a8cebda" resname="edgar.ezuicron.cron.updated">
-        <source>edgar.ezuicron.cron.updated</source>
-        <target state="new">CronJob updated successfully</target>
+        <source>CronJob updated successfully</source>
+        <target>CronJob updated successfully</target>
         <note>key: edgar.ezuicron.cron.updated</note>
+      </trans-unit>
+      <trans-unit id="4ef4be94e6f207070f837ce9a22e1f4d9bbb71ec" resname="edgar.ezuicron.permission.failed">
+        <source>edgar.ezuicron.permission.failed</source>
+        <target state="new">edgar.ezuicron.permission.failed</target>
+        <note>key: edgar.ezuicron.permission.failed</note>
       </trans-unit>
     </body>
   </file>

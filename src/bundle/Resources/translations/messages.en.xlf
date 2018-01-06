@@ -8,17 +8,17 @@
     <body>
       <trans-unit id="d21d07085caa55b0fee2fc054a6878bbdb24ae78" resname="breadcrumb.admin">
         <source>Admin</source>
-        <target state="new">Admin</target>
+        <target>Admin</target>
         <note>key: breadcrumb.admin</note>
       </trans-unit>
       <trans-unit id="10fe7ad08307807e080801e7358b282fa6dc9610" resname="cron.update">
         <source>Edit</source>
-        <target state="new">Edit</target>
+        <target>Edit</target>
         <note>key: cron.update</note>
       </trans-unit>
       <trans-unit id="d4c1fcd7b96af66bce059392b5e5883fbd4b071e" resname="cron_update_form.update">
         <source>Update</source>
-        <target state="new">Update</target>
+        <target>Update</target>
         <note>key: cron_update_form.update</note>
       </trans-unit>
       <trans-unit id="7cbc0d177a7a0a66c760f6c698a3c1d24deb7a5f" resname="main__crons">
