@@ -19,7 +19,7 @@ class CronTab extends AbstractTab implements OrderedTabInterface
     /** @var Repository $repository */
     protected $repository;
 
-    /** @var PermissionResolver  */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
     /**

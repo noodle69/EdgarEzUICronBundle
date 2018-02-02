@@ -2,6 +2,7 @@
 
 namespace Edgar\EzUICron\Form;
 
+use Edgar\EzUICronBundle\Entity\EdgarEzCron;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
@@ -36,12 +37,12 @@ class SubmitHandler
      *
      * @return null|Response
      */
-    public function handle(FormInterface $form, callable $handler): ?Response
+    public function handle(FormInterface $form, EdgarEzCron $cron, callable $handler): ?Response
     {
         $data = $form->getData();
         if ($form->isValid()) {
             try {
-                $result = $handler($data);
+                $result = $handler($data, $cron, $form);
                 if ($result instanceof Response) {
                     return $result;
                 }
@@ -53,6 +54,7 @@ class SubmitHandler
                 $this->notificationHandler->warning($formError->getMessage());
             }
         }
+
         return null;
     }
 }

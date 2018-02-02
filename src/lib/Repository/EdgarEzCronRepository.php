@@ -8,7 +8,7 @@ use Edgar\EzUICronBundle\Entity\EdgarEzCron;
 class EdgarEzCronRepository extends EntityRepository
 {
     /**
-     * List ez cron entries
+     * List ez cron entries.
      *
      * @return EdgarEzCron[]
      */

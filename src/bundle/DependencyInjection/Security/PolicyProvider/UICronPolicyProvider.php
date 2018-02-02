@@ -5,9 +5,7 @@ namespace Edgar\EzUICronBundle\DependencyInjection\Security\PolicyProvider;
 use eZ\Bundle\EzPublishCoreBundle\DependencyInjection\Security\PolicyProvider\YamlPolicyProvider;
 
 /**
- * Class UICronPolicyProvider
- *
- * @package Edgar\EzUICronBundle\DependencyInjection\Security\PolicyProvider
+ * Class UICronPolicyProvider.
  */
 class UICronPolicyProvider extends YamlPolicyProvider
 {
@@ -25,7 +23,7 @@ class UICronPolicyProvider extends YamlPolicyProvider
     }
 
     /**
-     * prepend policies to eZ Platform policy configuration
+     * prepend policies to eZ Platform policy configuration.
      *
      * @return array list of policies.yml
      */

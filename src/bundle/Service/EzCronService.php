@@ -56,6 +56,7 @@ class EzCronService
             $cron->setArguments($crons[$alias]['arguments']);
             $cron->setPriority($crons[$alias]['priority']);
             $cron->setEnabled($crons[$alias]['enabled']);
+
             return $cron;
         }
 
@@ -63,7 +64,7 @@ class EzCronService
     }
 
     /**
-     * Return cron status entries
+     * Return cron status entries.
      *
      * @return EdgarCron[] cron status entries
      */
@@ -74,6 +75,7 @@ class EzCronService
 
     /**
      * @param EdgarEzCron $cron
+     *
      * @throws NotFoundException
      */
     public function updateCron(EdgarEzCron $cron)
@@ -93,7 +95,7 @@ class EzCronService
     }
 
     /**
-     * Return cron list detail
+     * Return cron list detail.
      *
      * @return array cron list
      */
@@ -178,13 +180,14 @@ class EzCronService
         ksort($cronsToRun);
         foreach ($cronsToRun as $priority => $edgarCrons) {
             foreach ($edgarCrons as $edgarCron) {
-                $this->cronService->run($edgarCron);
-                /** @var CronInterface $cron */
-                $cron = $cronAlias[$edgarCron->getAlias()]['cron'];
-                $cron->addArguments($cronAlias[$edgarCron->getAlias()]['arguments']);
-                $cron->initApplication($application);
-                $status = $cron->run($input, $output);
-                $this->cronService->end($edgarCron, $status);
+                if ($this->cronService->run($edgarCron)) {
+                    /** @var CronInterface $cron */
+                    $cron = $cronAlias[$edgarCron->getAlias()]['cron'];
+                    $cron->addArguments($cronAlias[$edgarCron->getAlias()]['arguments']);
+                    $cron->initApplication($application);
+                    $status = $cron->run($input, $output);
+                    $this->cronService->end($edgarCron, $status);
+                }
             }
         }
     }

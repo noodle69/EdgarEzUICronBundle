@@ -7,7 +7,6 @@ use Knp\Menu\ItemInterface;
 
 class ConfigureMenuEvent
 {
-
     const CRON_EDIT_SIDEBAR_RIGHT = 'edgar.ezuicron.menu_configure.cron_edit_sidebar_right';
 
     /** @var FactoryInterface */

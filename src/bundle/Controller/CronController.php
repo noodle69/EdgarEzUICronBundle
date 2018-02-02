@@ -25,10 +25,10 @@ class CronController extends Controller
     /** @var Repository $repository */
     protected $repository;
 
-    /** @var FormFactory  */
+    /** @var FormFactory */
     protected $formFactory;
 
-    /** @var SubmitHandler  */
+    /** @var SubmitHandler */
     protected $submitHandler;
 
     /** @var NotificationHandlerInterface $notificationHandler */
@@ -37,7 +37,7 @@ class CronController extends Controller
     /** @var TranslatorInterface */
     private $translator;
 
-    /** @var PermissionResolver  */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
     public function __construct(
@@ -130,6 +130,7 @@ class CronController extends Controller
                     'edgarezuicron'
                 )
             );
+
             return new RedirectResponse($this->generateUrl('ezplatform.dashboard', []));
         }
 

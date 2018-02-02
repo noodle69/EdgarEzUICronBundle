@@ -12,7 +12,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
 {
     const ITEM_CRONS = 'main__crons';
 
-    /** @var PermissionResolver  */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
     public function __construct(PermissionResolver $permissionResolver)
