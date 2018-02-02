@@ -8,19 +8,29 @@ use EzSystems\EzPlatformAdminUi\Menu\MainMenuBuilder;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use JMS\TranslationBundle\Model\Message;
 
+/**
+ * Class ConfigureMenuListener.
+ */
 class ConfigureMenuListener implements TranslationContainerInterface
 {
     const ITEM_CRONS = 'main__crons';
 
-    /** @var PermissionResolver  */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
+    /**
+     * ConfigureMenuListener constructor.
+     *
+     * @param PermissionResolver $permissionResolver
+     */
     public function __construct(PermissionResolver $permissionResolver)
     {
         $this->permissionResolver = $permissionResolver;
     }
 
     /**
+     * Add cron to admin menu.
+     *
      * @param ConfigureMenuEvent $event
      */
     public function onMenuConfigure(ConfigureMenuEvent $event)
@@ -36,6 +46,8 @@ class ConfigureMenuListener implements TranslationContainerInterface
     }
 
     /**
+     * Menu label translation.
+     *
      * @return array
      */
     public static function getTranslationMessages(): array
@@ -45,6 +57,14 @@ class ConfigureMenuListener implements TranslationContainerInterface
         ];
     }
 
+    /**
+     * Check if user can display cron menu.
+     *
+     * @param string $module
+     * @param string $function
+     *
+     * @return bool
+     */
     protected function permissionAccess(string $module, string $function): bool
     {
         if (!$this->permissionResolver->hasAccess($module, $function)) {

@@ -11,6 +11,9 @@ use EzSystems\EzPlatformAdminUi\Tab\OrderedTabInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 use Twig\Environment;
 
+/**
+ * Class CronTab.
+ */
 class CronTab extends AbstractTab implements OrderedTabInterface
 {
     /** @var EzCronService $cronService */
@@ -19,12 +22,17 @@ class CronTab extends AbstractTab implements OrderedTabInterface
     /** @var Repository $repository */
     protected $repository;
 
-    /** @var PermissionResolver  */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
     /**
+     * CronTab constructor.
+     *
      * @param Environment $twig
      * @param TranslatorInterface $translator
+     * @param Repository $repository
+     * @param EzCronService $cronService
+     * @param PermissionResolver $permissionResolver
      */
     public function __construct(
         Environment $twig,
@@ -40,22 +48,40 @@ class CronTab extends AbstractTab implements OrderedTabInterface
         $this->permissionResolver = $permissionResolver;
     }
 
+    /**
+     * @return string
+     */
     public function getIdentifier(): string
     {
         return 'cron';
     }
 
+    /**
+     * @return string
+     */
     public function getName(): string
     {
         return
             $this->translator->trans('tab.name.cron', [], 'dashboard');
     }
 
+    /**
+     * @return int
+     */
     public function getOrder(): int
     {
         return 300;
     }
 
+    /**
+     * @param array $parameters
+     *
+     * @return string
+     *
+     * @throws \Twig_Error_Loader
+     * @throws \Twig_Error_Runtime
+     * @throws \Twig_Error_Syntax
+     */
     public function renderView(array $parameters): string
     {
         if (!$this->permissionAccess('cron', 'dashboard')) {
@@ -88,6 +114,12 @@ class CronTab extends AbstractTab implements OrderedTabInterface
         ]);
     }
 
+    /**
+     * @param string $module
+     * @param string $function
+     *
+     * @return bool
+     */
     protected function permissionAccess(string $module, string $function): bool
     {
         if (!$this->permissionResolver->hasAccess($module, $function)) {

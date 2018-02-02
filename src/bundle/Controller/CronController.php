@@ -6,7 +6,6 @@ use Edgar\EzUICron\Form\SubmitHandler;
 use Edgar\EzUICronBundle\Entity\EdgarEzCron;
 use Edgar\EzUICronBundle\Service\EzCronService;
 use eZ\Publish\API\Repository\PermissionResolver;
-use eZ\Publish\Core\Base\Exceptions\NotFoundException;
 use EzSystems\EzPlatformAdminUi\Notification\NotificationHandlerInterface;
 use EzSystems\EzPlatformAdminUiBundle\Controller\Controller;
 use Symfony\Component\Form\FormInterface;
@@ -17,6 +16,9 @@ use eZ\Publish\API\Repository\Repository;
 use Edgar\EzUICron\Form\Factory\FormFactory;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class CronController.
+ */
 class CronController extends Controller
 {
     /** @var EzCronService $cronService cron service */
@@ -25,10 +27,10 @@ class CronController extends Controller
     /** @var Repository $repository */
     protected $repository;
 
-    /** @var FormFactory  */
+    /** @var FormFactory */
     protected $formFactory;
 
-    /** @var SubmitHandler  */
+    /** @var SubmitHandler */
     protected $submitHandler;
 
     /** @var NotificationHandlerInterface $notificationHandler */
@@ -37,9 +39,20 @@ class CronController extends Controller
     /** @var TranslatorInterface */
     private $translator;
 
-    /** @var PermissionResolver  */
+    /** @var PermissionResolver */
     private $permissionResolver;
 
+    /**
+     * CronController constructor.
+     *
+     * @param EzCronService $cronService
+     * @param Repository $repository
+     * @param FormFactory $formFactory
+     * @param SubmitHandler $submitHandler
+     * @param NotificationHandlerInterface $notificationHandler
+     * @param TranslatorInterface $translator
+     * @param PermissionResolver $permissionResolver
+     */
     public function __construct(
         EzCronService $cronService,
         Repository $repository,
@@ -58,6 +71,11 @@ class CronController extends Controller
         $this->permissionResolver = $permissionResolver;
     }
 
+    /**
+     * List all crons.
+     *
+     * @return Response
+     */
     public function listAction(): Response
     {
         $this->permissionAccess('cron', 'list');
@@ -69,14 +87,21 @@ class CronController extends Controller
         ]);
     }
 
+    /**
+     * Update cron informations.
+     *
+     * @param Request $request
+     * @param $alias
+     *
+     * @return Response
+     */
     public function updateAction(Request $request, $alias): Response
     {
         $this->permissionAccess('cron', 'update');
 
         $cron = $this->cronService->getCron($alias);
         if (!$cron) {
-            return new RedirectResponse($this->generateUrl('edgar.ezuicron.list', [
-            ]));
+            return new RedirectResponse($this->generateUrl('edgar.ezuicron.list', []));
         }
 
         $form = $this->formFactory->updateCron($cron);
@@ -84,11 +109,13 @@ class CronController extends Controller
 
         if ($form->isSubmitted() && $form->isValid()) {
             $result = $this->submitHandler->handle($form, $cron, function (EdgarEzCron $data, EdgarEzCron $cron, FormInterface $form) {
-                try {
-                    $this->cronService->updateCron($data);
-                } catch (NotFoundException $e) {
+                if (!$this->cronService->updateCron($data)) {
                     $this->notificationHandler->error(
-                        $e->getMessage()
+                        $this->translator->trans(
+                            'edgar.ezuicron.cron.update.error',
+                            [],
+                            'edgarezuicron'
+                        )
                     );
 
                     return $this->render('EdgarEzUICronBundle:cron:update.html.twig', [
@@ -105,8 +132,7 @@ class CronController extends Controller
                     )
                 );
 
-                return new RedirectResponse($this->generateUrl('edgar.ezuicron.list', [
-                ]));
+                return new RedirectResponse($this->generateUrl('edgar.ezuicron.list', []));
             });
 
             if ($result instanceof Response) {
@@ -120,6 +146,14 @@ class CronController extends Controller
         ]);
     }
 
+    /**
+     * Check if user has permissions to access cron functions.
+     *
+     * @param string $module
+     * @param string $function
+     *
+     * @return null|RedirectResponse
+     */
     protected function permissionAccess(string $module, string $function): ?RedirectResponse
     {
         if (!$this->permissionResolver->hasAccess($module, $function)) {
@@ -130,6 +164,7 @@ class CronController extends Controller
                     'edgarezuicron'
                 )
             );
+
             return new RedirectResponse($this->generateUrl('ezplatform.dashboard', []));
         }
 

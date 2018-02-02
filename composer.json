@@ -1,6 +1,6 @@
 {
   "name": "edgar/ez-uicron-bundle",
-  "license": "GPL-2.0",
+  "license": "GPL-2.0-only",
   "type": "ezplatform-bundle",
   "description": "eZ Platform Cron scheduler",
   "authors": [

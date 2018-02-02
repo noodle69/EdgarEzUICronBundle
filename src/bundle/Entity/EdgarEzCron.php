@@ -5,7 +5,7 @@ namespace Edgar\EzUICronBundle\Entity;
 use Doctrine\ORM\Mapping as ORM;
 
 /**
- * EdgarEzCron
+ * EdgarEzCron.
  *
  * @ORM\Entity(repositoryClass="Edgar\EzUICron\Repository\EdgarEzCronRepository")
  * @ORM\Table(name="edgar_ez_cron")
@@ -49,7 +49,7 @@ class EdgarEzCron
     private $enabled = 1;
 
     /**
-     * Get alias
+     * Get alias.
      *
      * @return string
      */
@@ -59,31 +59,35 @@ class EdgarEzCron
     }
 
     /**
-     * Set alias
+     * Set alias.
      *
      * @param string $alias
+     *
      * @return EdgarEzCron
      */
     public function setAlias(string $alias): self
     {
         $this->alias = $alias;
+
         return $this;
     }
 
     /**
-     * Set expression
+     * Set expression.
      *
      * @param string $expression
+     *
      * @return EdgarEzCron
      */
     public function setExpression(string $expression): self
     {
         $this->expression = $expression;
+
         return $this;
     }
 
     /**
-     * Get expression
+     * Get expression.
      *
      * @return string
      */
@@ -93,19 +97,21 @@ class EdgarEzCron
     }
 
     /**
-     * Set arguments
+     * Set arguments.
      *
      * @param string $arguments
+     *
      * @return EdgarEzCron
      */
     public function setArguments(?string $arguments): self
     {
         $this->arguments = $arguments;
+
         return $this;
     }
 
     /**
-     * Get arguments
+     * Get arguments.
      *
      * @return string
      */
@@ -115,19 +121,21 @@ class EdgarEzCron
     }
 
     /**
-     * Set priority
+     * Set priority.
      *
      * @param int $priority
+     *
      * @return EdgarEzCron
      */
     public function setPriority(int $priority): self
     {
         $this->priority = $priority;
+
         return $this;
     }
 
     /**
-     * Get priority
+     * Get priority.
      *
      * @return int
      */
@@ -137,19 +145,21 @@ class EdgarEzCron
     }
 
     /**
-     * Set enabled
+     * Set enabled.
      *
      * @param bool $enabled
+     *
      * @return EdgarEzCron
      */
     public function setEnabled(bool $enabled): self
     {
         $this->enabled = $enabled;
+
         return $this;
     }
 
     /**
-     * Get enabled
+     * Get enabled.
      *
      * @return bool
      */

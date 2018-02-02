@@ -8,12 +8,17 @@ use Symfony\Component\Form\FormFactoryInterface;
 use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Request;
 
+/**
+ * Class FormFactory.
+ */
 class FormFactory
 {
     /** @var FormFactoryInterface $formFactory */
     protected $formFactory;
 
     /**
+     * FormFactory constructor.
+     *
      * @param FormFactoryInterface $formFactory
      */
     public function __construct(FormFactoryInterface $formFactory)
@@ -21,6 +26,14 @@ class FormFactory
         $this->formFactory = $formFactory;
     }
 
+    /**
+     * Cron form interface.
+     *
+     * @param EdgarEzCron $data
+     * @param null|string $name
+     *
+     * @return null|FormInterface
+     */
     public function updateCron(
         EdgarEzCron $data,
         ?string $name = null

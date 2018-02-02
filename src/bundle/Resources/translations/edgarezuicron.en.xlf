@@ -6,6 +6,11 @@
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="0c4545f8bda0c15179ea90ea294c29db7422daab" resname="edgar.ezuicron.cron.update.error">
+        <source>edgar.ezuicron.cron.update.error</source>
+        <target state="new">Failed to update cron informations</target>
+        <note>key: edgar.ezuicron.cron.update.error</note>
+      </trans-unit>
       <trans-unit id="f694e7057aa0a4e5ba4c03b27d84f4c28a8cebda" resname="edgar.ezuicron.cron.updated">
         <source>CronJob updated successfully</source>
         <target>CronJob updated successfully</target>
@@ -13,7 +18,7 @@
       </trans-unit>
       <trans-unit id="4ef4be94e6f207070f837ce9a22e1f4d9bbb71ec" resname="edgar.ezuicron.permission.failed">
         <source>edgar.ezuicron.permission.failed</source>
-        <target state="new">edgar.ezuicron.permission.failed</target>
+        <target>edgar.ezuicron.permission.failed</target>
         <note>key: edgar.ezuicron.permission.failed</note>
       </trans-unit>
     </body>

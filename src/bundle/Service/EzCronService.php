@@ -15,6 +15,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class EzCronService.
+ */
 class EzCronService
 {
     /** @var CronService $cronService cron service */
@@ -29,6 +32,14 @@ class EzCronService
     /** @var TranslatorInterface $translator */
     protected $translator;
 
+    /**
+     * EzCronService constructor.
+     *
+     * @param CronService $cronService
+     * @param CronHandler $cronHandler
+     * @param Registry $doctrineRegistry
+     * @param TranslatorInterface $translator
+     */
     public function __construct(
         CronService $cronService,
         CronHandler $cronHandler,
@@ -42,6 +53,13 @@ class EzCronService
         $this->translator = $translator;
     }
 
+    /**
+     * Get Cron by alias.
+     *
+     * @param string $alias
+     *
+     * @return EdgarEzCron|null
+     */
     public function getCron(string $alias): ?EdgarEzCron
     {
         if ($cron = $this->repository->getCron($alias)) {
@@ -56,6 +74,7 @@ class EzCronService
             $cron->setArguments($crons[$alias]['arguments']);
             $cron->setPriority($crons[$alias]['priority']);
             $cron->setEnabled($crons[$alias]['enabled']);
+
             return $cron;
         }
 
@@ -63,7 +82,7 @@ class EzCronService
     }
 
     /**
-     * Return cron status entries
+     * Return cron status entries.
      *
      * @return EdgarCron[] cron status entries
      */
@@ -73,10 +92,15 @@ class EzCronService
     }
 
     /**
+     * Update cron informations.
+     *
      * @param EdgarEzCron $cron
+     *
+     * @return bool
+     *
      * @throws NotFoundException
      */
-    public function updateCron(EdgarEzCron $cron)
+    public function updateCron(EdgarEzCron $cron): bool
     {
         $eZCron = $this->repository->find($cron->getAlias());
         if (!$eZCron) {
@@ -89,11 +113,11 @@ class EzCronService
             }
         }
 
-        $this->repository->updateCron($cron);
+        return $this->repository->updateCron($cron);
     }
 
     /**
-     * Return cron list detail
+     * Return cron list detail.
      *
      * @return array cron list
      */
@@ -130,16 +154,35 @@ class EzCronService
         return $return;
     }
 
+    /**
+     * Is cron in queue.
+     *
+     * @param string $alias
+     *
+     * @return bool
+     */
     public function isQueued(string $alias): bool
     {
         return $this->cronService->isQueued($alias);
     }
 
+    /**
+     * Add cron to queue.
+     *
+     * @param string $alias
+     */
     public function addQueued(string $alias)
     {
         $this->cronService->addQueued($alias);
     }
 
+    /**
+     * Run crons in queue.
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @param Application $application
+     */
     public function runQueued(InputInterface $input, OutputInterface $output, Application $application)
     {
         /** @var EdgarCron[] $edgarCrons */
@@ -178,13 +221,14 @@ class EzCronService
         ksort($cronsToRun);
         foreach ($cronsToRun as $priority => $edgarCrons) {
             foreach ($edgarCrons as $edgarCron) {
-                $this->cronService->run($edgarCron);
-                /** @var CronInterface $cron */
-                $cron = $cronAlias[$edgarCron->getAlias()]['cron'];
-                $cron->addArguments($cronAlias[$edgarCron->getAlias()]['arguments']);
-                $cron->initApplication($application);
-                $status = $cron->run($input, $output);
-                $this->cronService->end($edgarCron, $status);
+                if ($this->cronService->run($edgarCron)) {
+                    /** @var CronInterface $cron */
+                    $cron = $cronAlias[$edgarCron->getAlias()]['cron'];
+                    $cron->addArguments($cronAlias[$edgarCron->getAlias()]['arguments']);
+                    $cron->initApplication($application);
+                    $status = $cron->run($input, $output);
+                    $this->cronService->end($edgarCron, $status);
+                }
             }
         }
     }
