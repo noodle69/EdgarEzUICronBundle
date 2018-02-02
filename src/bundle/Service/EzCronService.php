@@ -15,6 +15,9 @@ use Symfony\Component\Console\Input\InputInterface;
 use Symfony\Component\Console\Output\OutputInterface;
 use Symfony\Component\Translation\TranslatorInterface;
 
+/**
+ * Class EzCronService.
+ */
 class EzCronService
 {
     /** @var CronService $cronService cron service */
@@ -29,6 +32,14 @@ class EzCronService
     /** @var TranslatorInterface $translator */
     protected $translator;
 
+    /**
+     * EzCronService constructor.
+     *
+     * @param CronService $cronService
+     * @param CronHandler $cronHandler
+     * @param Registry $doctrineRegistry
+     * @param TranslatorInterface $translator
+     */
     public function __construct(
         CronService $cronService,
         CronHandler $cronHandler,
@@ -42,6 +53,13 @@ class EzCronService
         $this->translator = $translator;
     }
 
+    /**
+     * Get Cron by alias.
+     *
+     * @param string $alias
+     *
+     * @return EdgarEzCron|null
+     */
     public function getCron(string $alias): ?EdgarEzCron
     {
         if ($cron = $this->repository->getCron($alias)) {
@@ -74,11 +92,15 @@ class EzCronService
     }
 
     /**
+     * Update cron informations.
+     *
      * @param EdgarEzCron $cron
+     *
+     * @return bool
      *
      * @throws NotFoundException
      */
-    public function updateCron(EdgarEzCron $cron)
+    public function updateCron(EdgarEzCron $cron): bool
     {
         $eZCron = $this->repository->find($cron->getAlias());
         if (!$eZCron) {
@@ -91,7 +113,7 @@ class EzCronService
             }
         }
 
-        $this->repository->updateCron($cron);
+        return $this->repository->updateCron($cron);
     }
 
     /**
@@ -132,16 +154,35 @@ class EzCronService
         return $return;
     }
 
+    /**
+     * Is cron in queue.
+     *
+     * @param string $alias
+     *
+     * @return bool
+     */
     public function isQueued(string $alias): bool
     {
         return $this->cronService->isQueued($alias);
     }
 
+    /**
+     * Add cron to queue.
+     *
+     * @param string $alias
+     */
     public function addQueued(string $alias)
     {
         $this->cronService->addQueued($alias);
     }
 
+    /**
+     * Run crons in queue.
+     *
+     * @param InputInterface $input
+     * @param OutputInterface $output
+     * @param Application $application
+     */
     public function runQueued(InputInterface $input, OutputInterface $output, Application $application)
     {
         /** @var EdgarCron[] $edgarCrons */

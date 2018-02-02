@@ -9,6 +9,9 @@ use JMS\TranslationBundle\Model\Message;
 use JMS\TranslationBundle\Translation\TranslationContainerInterface;
 use Knp\Menu\ItemInterface;
 
+/**
+ * Class CronEditRightSidebarBuilder.
+ */
 class CronEditRightSidebarBuilder extends AbstractBuilder implements TranslationContainerInterface
 {
     /* Menu items */
@@ -27,10 +30,6 @@ class CronEditRightSidebarBuilder extends AbstractBuilder implements Translation
      * @param array $options
      *
      * @return ItemInterface
-     *
-     * @throws ApiExceptions\InvalidArgumentException
-     * @throws ApiExceptions\BadStateException
-     * @throws InvalidArgumentException
      */
     public function createStructure(array $options): ItemInterface
     {

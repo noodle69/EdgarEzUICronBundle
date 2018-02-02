@@ -8,6 +8,9 @@ use Symfony\Component\Form\FormInterface;
 use Symfony\Component\HttpFoundation\Response;
 use Symfony\Component\Routing\RouterInterface;
 
+/**
+ * Class SubmitHandler.
+ */
 class SubmitHandler
 {
     /** @var NotificationHandlerInterface $notificationHandler */
@@ -17,6 +20,8 @@ class SubmitHandler
     protected $router;
 
     /**
+     * SubmitHandler constructor.
+     *
      * @param NotificationHandlerInterface $notificationHandler
      * @param RouterInterface $router
      */
@@ -33,7 +38,8 @@ class SubmitHandler
      * Handles business logic exceptions (NotificationHandler:error).
      *
      * @param FormInterface $form
-     * @param callable(mixed):array $handler
+     * @param EdgarEzCron $cron
+     * @param callable $handler
      *
      * @return null|Response
      */

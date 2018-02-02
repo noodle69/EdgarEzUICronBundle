@@ -5,6 +5,9 @@ namespace Edgar\EzUICron\Menu\Event;
 use Knp\Menu\FactoryInterface;
 use Knp\Menu\ItemInterface;
 
+/**
+ * Class ConfigureMenuEvent.
+ */
 class ConfigureMenuEvent
 {
     const CRON_EDIT_SIDEBAR_RIGHT = 'edgar.ezuicron.menu_configure.cron_edit_sidebar_right';
@@ -19,6 +22,8 @@ class ConfigureMenuEvent
     private $options;
 
     /**
+     * ConfigureMenuEvent constructor.
+     *
      * @param FactoryInterface $factory
      * @param ItemInterface $menu
      * @param array $options
