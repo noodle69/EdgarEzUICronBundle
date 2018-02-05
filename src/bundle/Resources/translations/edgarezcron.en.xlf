@@ -6,6 +6,21 @@
       <note>The source node in most cases contains the sample message as written by the developer. If it looks like a dot-delimitted string such as "form.label.firstname", then the developer has not provided a default message.</note>
     </header>
     <body>
+      <trans-unit id="7f2f6a15cf8da2b27e5a4af47b58e7ad71c0b3d9" resname="Error">
+        <source>Error</source>
+        <target state="new">Error</target>
+        <note>key: Error</note>
+      </trans-unit>
+      <trans-unit id="19682bdb9185a5fa9d763d414d0443d3a0bc2456" resname="Init">
+        <source>Init</source>
+        <target state="new">Init</target>
+        <note>key: Init</note>
+      </trans-unit>
+      <trans-unit id="9ce3bd4224c8c1780db56b4125ecf3f24bf748b7" resname="OK">
+        <source>OK</source>
+        <target state="new">OK</target>
+        <note>key: OK</note>
+      </trans-unit>
       <trans-unit id="fc28844e71e4becb0355e6a25c9049667cfd6cf9" resname="cron alias not found">
         <source>cron alias not found</source>
         <target>cron alias not found</target>

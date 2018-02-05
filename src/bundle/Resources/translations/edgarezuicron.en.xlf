@@ -7,8 +7,8 @@
     </header>
     <body>
       <trans-unit id="0c4545f8bda0c15179ea90ea294c29db7422daab" resname="edgar.ezuicron.cron.update.error">
-        <source>edgar.ezuicron.cron.update.error</source>
-        <target state="new">Failed to update cron informations</target>
+        <source>Failed to update cron informations</source>
+        <target>Failed to update cron informations</target>
         <note>key: edgar.ezuicron.cron.update.error</note>
       </trans-unit>
       <trans-unit id="f694e7057aa0a4e5ba4c03b27d84f4c28a8cebda" resname="edgar.ezuicron.cron.updated">

@@ -2,6 +2,7 @@
 
 namespace Edgar\EzUICron\Tab\Dashboard;
 
+use Edgar\Cron\Repository\EdgarCronRepository;
 use Edgar\CronBundle\Entity\EdgarCron;
 use Edgar\EzUICronBundle\Service\EzCronService;
 use eZ\Publish\API\Repository\PermissionResolver;
@@ -94,6 +95,24 @@ class CronTab extends AbstractTab implements OrderedTabInterface
 
         $cronRows = [];
         foreach ($crons as $cron) {
+            $cronStatus = '';
+            if ($cron instanceof EdgarCron) {
+                switch ($cron->getStatus()) {
+                    case EdgarCronRepository::STATUS_INIT:
+                        $cronStatus = $this->translator->trans('Init', [], 'edgarezcron');
+                        break;
+                    case EdgarCronRepository::STATUS_OK:
+                        $cronStatus = $this->translator->trans('OK', [], 'edgarezcron');
+                        break;
+                    case EdgarCronRepository::STATUS_ERROR:
+                        $cronStatus = $this->translator->trans('Error', [], 'edgarezcron');
+                        break;
+                    default:
+                        $cronStatus = '';
+                        break;
+                }
+            }
+
             $cronRows[] = [
                 'alias' => $cron->getAlias(),
                 'queued' => $cron instanceof EdgarCron
@@ -105,7 +124,7 @@ class CronTab extends AbstractTab implements OrderedTabInterface
                 'ended' => $cron instanceof EdgarCron ? ($cron->getEnded()
                     ? $cron->getEnded()->format('d-m-Y H:i') : false)
                     : false,
-                'status' => $cron instanceof EdgarCron ? $cron->getStatus() : false,
+                'status' => $cronStatus,
             ];
         }
 
