@@ -19,8 +19,8 @@
   },
   "require": {
     "php": ">=7.1",
-    "ezsystems/ezpublish-kernel": "^7.0",
-    "ezsystems/ezplatform-admin-ui": "^1.0",
+    "ezsystems/ezpublish-kernel": "^7.1",
+    "ezsystems/ezplatform-admin-ui": "^1.1",
     "edgar/cron-bundle": "~1.0"
   },
   "require-dev": {

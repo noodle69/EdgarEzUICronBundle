@@ -85,7 +85,7 @@ class CronTab extends AbstractTab implements OrderedTabInterface
      */
     public function renderView(array $parameters): string
     {
-        if (!$this->permissionAccess('cron', 'dashboard')) {
+        if (!$this->permissionAccess('uicron', 'dashboard')) {
             return $this->twig->render('@EdgarEzUICron/dashboard/tab/cron.html.twig', [
                 'crons' => [],
             ]);

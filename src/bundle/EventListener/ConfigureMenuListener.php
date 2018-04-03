@@ -35,7 +35,7 @@ class ConfigureMenuListener implements TranslationContainerInterface
      */
     public function onMenuConfigure(ConfigureMenuEvent $event)
     {
-        if (!$this->permissionAccess('cron', 'list')) {
+        if (!$this->permissionResolver->hasAccess('uicron', 'list')) {
             return;
         }
 
@@ -55,22 +55,5 @@ class ConfigureMenuListener implements TranslationContainerInterface
         return [
             (new Message(self::ITEM_CRONS, 'messages'))->setDesc('Cronjobs'),
         ];
-    }
-
-    /**
-     * Check if user can display cron menu.
-     *
-     * @param string $module
-     * @param string $function
-     *
-     * @return bool
-     */
-    protected function permissionAccess(string $module, string $function): bool
-    {
-        if (!$this->permissionResolver->hasAccess($module, $function)) {
-            return false;
-        }
-
-        return true;
     }
 }

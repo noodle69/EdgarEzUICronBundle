@@ -78,7 +78,7 @@ class CronController extends Controller
      */
     public function listAction(): Response
     {
-        $this->permissionAccess('cron', 'list');
+        $this->permissionAccess('uicron', 'list');
 
         $crons = $this->cronService->getCrons();
 
@@ -97,7 +97,7 @@ class CronController extends Controller
      */
     public function updateAction(Request $request, $alias): Response
     {
-        $this->permissionAccess('cron', 'update');
+        $this->permissionAccess('uicron', 'update');
 
         $cron = $this->cronService->getCron($alias);
         if (!$cron) {
