@@ -116,13 +116,13 @@ class CronTab extends AbstractTab implements OrderedTabInterface
             $cronRows[] = [
                 'alias' => $cron->getAlias(),
                 'queued' => $cron instanceof EdgarCron
-                    ? ($cron->getQueued() ? $cron->getQueued()->format('d-m-Y H:i') : false)
+                    ? ($cron->getQueued() ? $cron->getQueued() : false)
                     : false,
                 'started' => $cron instanceof EdgarCron ? ($cron->getStarted()
-                    ? $cron->getStarted()->format('d-m-Y H:i') : false)
+                    ? $cron->getStarted() : false)
                     : false,
                 'ended' => $cron instanceof EdgarCron ? ($cron->getEnded()
-                    ? $cron->getEnded()->format('d-m-Y H:i') : false)
+                    ? $cron->getEnded() : false)
                     : false,
                 'status' => $cronStatus,
             ];

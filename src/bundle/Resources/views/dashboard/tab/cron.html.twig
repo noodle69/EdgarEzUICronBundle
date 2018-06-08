@@ -21,9 +21,9 @@
             {% for cron in crons %}
                 <tr >
                     <td>{{ cron.alias }}</td>
-                    <td>{{ cron.queued }}</td>
-                    <td>{{ cron.started }}</td>
-                    <td>{{ cron.ended }}</td>
+                    <td>{{ cron.queued|localizeddate('short', 'short', app.request.locale) }}</td>
+                    <td>{{ cron.started|localizeddate('short', 'short', app.request.locale) }}</td>
+                    <td>{{ cron.ended|localizeddate('short', 'short', app.request.locale) }}</td>
                     <td>{{ cron.status }}</td>
                 </tr>
             {% endfor %}
