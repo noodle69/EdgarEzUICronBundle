@@ -76,12 +76,11 @@ class CronTab extends AbstractTab implements OrderedTabInterface
 
     /**
      * @param array $parameters
-     *
      * @return string
-     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
     public function renderView(array $parameters): string
     {
@@ -96,16 +95,19 @@ class CronTab extends AbstractTab implements OrderedTabInterface
         $cronRows = [];
         foreach ($crons as $cron) {
             $cronStatus = '';
+            $cronReset = false;
             if ($cron instanceof EdgarCron) {
                 switch ($cron->getStatus()) {
                     case EdgarCronRepository::STATUS_INIT:
                         $cronStatus = $this->translator->trans('Init', [], 'edgarezcron');
+                        $cronReset = true;
                         break;
                     case EdgarCronRepository::STATUS_OK:
                         $cronStatus = $this->translator->trans('OK', [], 'edgarezcron');
                         break;
                     case EdgarCronRepository::STATUS_ERROR:
                         $cronStatus = $this->translator->trans('Error', [], 'edgarezcron');
+                        $cronReset = true;
                         break;
                     default:
                         $cronStatus = '';
@@ -125,6 +127,7 @@ class CronTab extends AbstractTab implements OrderedTabInterface
                     ? $cron->getEnded() : false)
                     : false,
                 'status' => $cronStatus,
+                'reset' => $cronReset,
             ];
         }
 
@@ -136,8 +139,8 @@ class CronTab extends AbstractTab implements OrderedTabInterface
     /**
      * @param string $module
      * @param string $function
-     *
      * @return bool
+     * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
     protected function permissionAccess(string $module, string $function): bool
     {

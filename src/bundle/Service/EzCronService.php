@@ -177,6 +177,14 @@ class EzCronService
     }
 
     /**
+     * @param string $alias
+     */
+    public function removeQueud(string $alias)
+    {
+        $this->cronService->removeQueued($alias);
+    }
+
+    /**
      * Run crons in queue.
      *
      * @param InputInterface $input

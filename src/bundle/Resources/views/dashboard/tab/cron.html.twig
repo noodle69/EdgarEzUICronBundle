@@ -8,6 +8,7 @@
         <th>{{ 'edgarezcron.status.th.started'|trans|desc('Started') }}</th>
         <th>{{ 'edgarezcron.status.th.ended'|trans|desc('Ended') }}</th>
         <th>{{ 'edgarezcron.status.th.status'|trans|desc('Status') }}</th>
+        <th></th>
     </tr>
     </thead>
     <tbody>
@@ -25,6 +26,11 @@
                     <td>{{ cron.started|localizeddate('short', 'short', app.request.locale) }}</td>
                     <td>{{ cron.ended|localizeddate('short', 'short', app.request.locale) }}</td>
                     <td>{{ cron.status }}</td>
+                    <td>
+                        {% if cron.reset %}
+                            <a href="{{ path('edgar.ezuicron.reset', {'alias': cron.alias}) }}">{{ 'edgarezcron.status.td.reset'|trans|desc('Reset') }}</a>
+                        {% endif %}
+                    </td>
                 </tr>
             {% endfor %}
         {% endif %}

@@ -91,11 +91,11 @@ class CronController extends Controller
      * Update cron informations.
      *
      * @param Request $request
-     * @param $alias
+     * @param string $alias
      *
      * @return Response
      */
-    public function updateAction(Request $request, $alias): Response
+    public function updateAction(Request $request, string $alias): Response
     {
         $this->permissionAccess('uicron', 'update');
 
@@ -144,6 +144,33 @@ class CronController extends Controller
             'cron' => $cron,
             'form_cron_update' => $form->createView(),
         ]);
+    }
+
+    /**
+     * @param Request $request
+     * @param string  $alias
+     * @return Response
+     */
+    public function resetAction(Request $request, string $alias): Response
+    {
+        $this->permissionAccess('uicron', 'reset');
+
+        $cron = $this->cronService->getCron($alias);
+        if (!$cron) {
+            return $this->redirect('ezplatform.dashboard');
+        }
+
+        $this->cronService->removeQueud($alias);
+
+        $this->notificationHandler->info(
+            $this->translator->trans(
+                'edgar.ezuicron.reset.info',
+                [],
+                'edgarezuicron'
+            )
+        );
+
+        return $this->redirect('ezplatform.dashboard');
     }
 
     /**
