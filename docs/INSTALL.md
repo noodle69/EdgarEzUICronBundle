@@ -51,6 +51,7 @@ Add to your global configuration app/config/routing.yml
 ```yaml
 edgar.ezuicron:
     resource: '@EdgarEzUICronBundle/Resources/config/routing.yml'
+    prefix: /_uicron
     defaults:
         siteaccess_group_whitelist: 'admin_group'    
 ```
