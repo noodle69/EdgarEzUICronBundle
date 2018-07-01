@@ -76,7 +76,9 @@ class CronTab extends AbstractTab implements OrderedTabInterface
 
     /**
      * @param array $parameters
+     *
      * @return string
+     *
      * @throws \Twig_Error_Loader
      * @throws \Twig_Error_Runtime
      * @throws \Twig_Error_Syntax
@@ -139,7 +141,9 @@ class CronTab extends AbstractTab implements OrderedTabInterface
     /**
      * @param string $module
      * @param string $function
+     *
      * @return bool
+     *
      * @throws \eZ\Publish\API\Repository\Exceptions\InvalidArgumentException
      */
     protected function permissionAccess(string $module, string $function): bool

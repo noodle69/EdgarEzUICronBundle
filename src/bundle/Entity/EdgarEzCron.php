@@ -35,7 +35,7 @@ class EdgarEzCron
     private $arguments;
 
     /**
-     * @var integer
+     * @var int
      *
      * @ORM\Column(name="priority", type="integer", nullable=false)
      */

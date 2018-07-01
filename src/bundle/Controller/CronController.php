@@ -149,6 +149,7 @@ class CronController extends Controller
     /**
      * @param Request $request
      * @param string  $alias
+     *
      * @return Response
      */
     public function resetAction(Request $request, string $alias): Response
