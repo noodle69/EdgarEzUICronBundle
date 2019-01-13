@@ -9,7 +9,8 @@ services:
         autoconfigure: true
         public: false
 
-    Edgar\EzUICronBundle\Service\EzCronService: ~
+    Edgar\EzUICronBundle\Service\EzCronService:
+        public: true
 
     Edgar\EzUICronBundle\EventListener\ConfigureMenuListener:
         public: true
